@@ -1,7 +1,7 @@
 {
   "name": "atelier-reviews-sdc",
   "version": "1.0.0",
-  "description": "API service for the Ratings & Reviews component of Atelier's e-commerce website",
+  "description": "API service for Ratings & Reviews component of Atelier's e-commerce website",
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/index.js",
