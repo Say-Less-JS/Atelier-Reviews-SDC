@@ -1,0 +1,29 @@
+{
+  "name": "atelier-reviews-sdc",
+  "version": "1.0.0",
+  "description": "API service for the Ratings & Reviews component of Atelier's e-commerce website",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/index.js",
+    "test": "echo \\\"Error: no test specified\\"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Say-Less-JS/Atelier-Reviews-SDC.git"
+  },
+  "author": "Flora Zhang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Say-Less-JS/Atelier-Reviews-SDC/issues"
+  },
+  "homepage": "https://github.com/Say-Less-JS/Atelier-Reviews-SDC#readme",
+  "dependencies": {
+    "axios": "^1.6.8",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
