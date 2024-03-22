@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+mongoose.connect('mongodb://localhost/reviews');
 const reviewSchema =  mongoose.Schema({
   product_id: Number,
   review_id: Number,
@@ -19,8 +19,7 @@ const reviewSchema =  mongoose.Schema({
   ]
 });
 
-
-const reviewsMetaSchema = mongoose.Schema({
+const metaSchema = mongoose.Schema({
   product_id: Number,
   ratings: {
     '1': { type: Number, default: 0 },
@@ -40,8 +39,25 @@ const reviewsMetaSchema = mongoose.Schema({
   }],
 });
 
+const Review = mongoose.model('Review', reviewSchema);
+const Meta = mongoose.model('Meta')
+let getReviews = (productId) => {
+  return Review.find({ product_id: productId });
+}
 
-module.exports = {
-  reviewSchema,
-  reviewsMetaSchema
+let getMeta = (productId) => {
+  return Meta.findOne({ product_id: productId });
+}
+
+let addReview = (reviewData) => {
+  const { product_id, rating, summary, body, recommend, name: reviewer_name, photos } = reviewData;
+
+  let review = new Review({product_id, rating, summary, body,recommend, reviewer_name,photos});
+  return review.save();
 };
+
+let updateHelpful = (review) => {
+  return Review.updateOne({_id: review._id}, {
+    $inc: { helpfulness: 1 }
+  })
+}
