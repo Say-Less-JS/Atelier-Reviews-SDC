@@ -4,8 +4,8 @@ const fs = require('fs');
 const path = require('path');
 
 // Import database models and schemas
-const { reviewsMetaSchema, reviewSchema } = require('./db.js');
-const ReviewsMeta = mongoose.model('ReviewsMeta', reviewsMetaSchema);
+const { metaSchema, reviewSchema } = require('./db.js');
+const meta = mongoose.model('meta', metaSchema);
 const Review = mongoose.model('Review', reviewSchema);
 
 // Connect to MongoDB
@@ -83,7 +83,7 @@ const loadCharsReviewsData = async () => {
 
 
 
-const updateReviewsMeta = async () => {
+const updatemeta = async () => {
   const characteristics = await loadCharsReviewsData();
 
   // aggregation to compile the meta data.
@@ -138,8 +138,8 @@ const updateReviewsMeta = async () => {
      };
    });
 
-    // Upsert the ReviewsMeta for product
-    await ReviewsMeta.updateOne(
+    // Upsert the meta for product
+    await meta.updateOne(
       { product_id: product._id },
       {
         $set: {
@@ -154,9 +154,9 @@ const updateReviewsMeta = async () => {
 };
 
 loadCharsData()
-  .then(updateReviewsMeta)
+  .then(updatemeta)
   .then(() => {
-    console.log('All reviewsmeta processed.');
+    console.log('All meta processed.');
     mongoose.disconnect();
   })
   .catch(err => {

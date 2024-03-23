@@ -2,14 +2,15 @@ const mongoose = require('mongoose');
 
 const reviewSchema =  mongoose.Schema({
   product_id: Number,
-  review_id: Number,
   rating: Number,
-  summary: String,
-  recommend: Boolean,
-  response: String,
-  body: String,
   date: Date,
+  summary: String,
+  body: String,
+  recommend: Boolean,
+  reported: { type: Boolean, default: false },
   reviewer_name: String,
+  reviewer_email: String,
+  response: String,
   helpfulness: Number,
   photos: [
     {
@@ -19,8 +20,7 @@ const reviewSchema =  mongoose.Schema({
   ]
 });
 
-
-const reviewsMetaSchema = mongoose.Schema({
+const metaSchema = mongoose.Schema({
   product_id: Number,
   ratings: {
     '1': { type: Number, default: 0 },
@@ -43,5 +43,5 @@ const reviewsMetaSchema = mongoose.Schema({
 
 module.exports = {
   reviewSchema,
-  reviewsMetaSchema
+  metaSchema
 };
