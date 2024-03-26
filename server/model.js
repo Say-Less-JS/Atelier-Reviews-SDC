@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/reviews');
+mongoose.connect('mongodb://ec2-3-17-67-15.us-east-2.compute.amazonaws.com/reviews');
 const { metaSchema, reviewSchema} = require('./db.js');
 
 const Review = mongoose.model('Review', reviewSchema);
