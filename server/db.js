@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/reviews');
+mongoose.connect('mongodb://ec2-3-17-67-15.us-east-2.compute.amazonaws.com/reviews');
 
 const reviewSchema =  mongoose.Schema({
   product_id: Number,
