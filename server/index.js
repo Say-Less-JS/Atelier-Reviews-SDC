@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const model = require('./model.js');
@@ -6,6 +7,7 @@ const model = require('./model.js');
 const app = express();
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/reviews/:productId', (req, res) => {
   const { productId } = req.params;
