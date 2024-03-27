@@ -1,5 +1,6 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://ec2-3-139-62-205.us-east-2.compute.amazonaws.com/reviews');
+mongoose.connect(process.env.MONGODB_URI);
 const { metaSchema, reviewSchema} = require('./db.js');
 
 const Review = mongoose.model('Review', reviewSchema);
